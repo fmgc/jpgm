@@ -1,0 +1,117 @@
+<?xml version = "1.0" encoding = "ISO-8859-1" ?>
+
+<!--
+    Sex 27 Fev 2015 14:47:42 UTC
+    This file was created by fc@di.uevora.pt
+-->
+
+<project name   = "jpgm"
+    basedir = "."
+    default = "jar">
+
+    <property name = "build.dir" value = "${basedir}/bin" />
+    <property name = "source.dir" value = "${basedir}/src" />
+    <property name = "test.dir" value = "${basedir}/test" />
+    <property name = "lib.dir" value = "${basedir}/lib" />
+    <property name = "doc.dir" value = "${basedir}/doc" />
+    <property name = "test.class" value = "DBNTest" />
+
+    <path id = "project.classpath">
+        <pathelement location = "${basedir}"/>
+        <pathelement location = "${build.dir}"/>
+        <fileset dir = "${lib.dir}" >
+            <include name = "*.jar" />
+        </fileset>
+    </path>
+
+    <target name = "init">
+        <mkdir dir = "${build.dir}" />
+    </target>
+
+    <target name = "build" depends = "init">
+        <javac
+            srcdir = "${source.dir}"
+            destdir = "${build.dir}"
+            optimize = "true"
+            includeantruntime = "false" >
+            <classpath refid = "project.classpath"/>
+        </javac>
+    </target>
+
+    <target name = "jar" depends = "build">
+        <delete file = "${ant.project.name}.jar" />
+        <jar
+            update = "yes"
+            jarfile = "${ant.project.name}.jar" >
+            <fileset dir = "${lib.dir}">
+                <include name = "**/*.jar" />
+            </fileset>
+            <fileset dir = "${build.dir}">
+                <include name = "**/*.class" />
+            </fileset>
+        </jar>
+    </target>
+
+    <target name = "test" depends = "build" >
+        <echo message = "Testing project ${ant.project.name}" />
+        <javac
+            srcdir = "${test.dir}"
+            destdir = "${build.dir}"
+            optimize = "true"
+            includeantruntime = "false" >
+            <classpath refid = "project.classpath"/>
+        </javac>
+        <java classname = "IntArrayTest"
+            failonerror = "true"
+            fork = "yes"
+            dir = "${basedir}" >
+            <classpath refid = "project.classpath"/>
+            <!-- jvmarg line = "-Xmx500M -Xss8M"/ -->    
+        </java>
+        <java classname = "FactorTest"
+            failonerror = "true"
+            fork = "yes"
+            dir = "${basedir}" >
+            <classpath refid = "project.classpath"/>
+            <!-- jvmarg line = "-Xmx500M -Xss8M"/ -->    
+        </java>
+        <java classname = "BNTest"
+            failonerror = "true"
+            fork = "yes"
+            dir = "${basedir}" >
+            <classpath refid = "project.classpath"/>
+            <!-- jvmarg line = "-Xmx500M -Xss8M"/ -->    
+        </java>
+        <java classname = "DBNTest"
+            failonerror = "true"
+            fork = "yes"
+            dir = "${basedir}" >
+            <classpath refid = "project.classpath"/>
+            <!-- jvmarg line = "-Xmx500M -Xss8M"/ -->    
+        </java>
+    </target>
+
+    <target name = "clean" >
+        <delete
+            failonerror = "no"
+            includeEmptyDirs = "true"
+            verbose = "true">
+            <fileset
+                dir = "${basedir}"
+                includes = "**/*.class"/>
+            <fileset
+                dir = "${doc.dir}"
+                includes = "**"/>
+        </delete>
+    </target>
+
+    <target name = "doc" >
+        <mkdir dir = "${doc.dir}" />
+        <javadoc 
+            sourcepath = "${source.dir}"
+            destdir = "${doc.dir}"
+            defaultexcludes="yes"
+            author = "true"
+            version = "true" />
+    </target>
+</project>
