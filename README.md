@@ -6,7 +6,7 @@
 
 It exists only *while no clear open-source alternative exists* and to provide enough support for (my) research that needs some pgm related computations with sparse matrices in java.
 
-Graphical models structure is supported by the [jgrapht](http://jgrapht.org/) library.
+Graphical models structure is supported by the [jgrapht](http://jgrapht.org/) library (that should be placed in the `jpgm/lib` directory.
 
 `jpgm` is nowhere near of being complete, fast, scalable or other usually looked-for niceties. Indeed, classes in `jpgm` are only a few:
 
