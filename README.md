@@ -17,15 +17,16 @@ Graphical models structure is supported by the [jgrapht](http://jgrapht.org/) li
 * `DBN` is mostly unfinished;
 * `Lambda` defines a simple interface to represent anonymous functions, now obsolete in recent `java` versions;
 
-## Building
+## Building/installing
 
-There are a few `ant` tasks, with obvious function:
-
-* `jar` (default)
-* `build`
-* `doc`
-* `test` (a few text-book bn examples are constructed and evaluated)
-* `clean`
+* After cloning this repository, place a copy (or link) of `jgrapht.jar >=0.90` in `jpgm/lib`;
+* Test the "installation" with `ant test`;
+* There are a few `ant` tasks, with obvious function:
+	* `jar` (default)
+	* `build`
+	* `doc`
+	* `test` (a few text-book bn examples are constructed and evaluated)
+	* `clean`
 
 ## Documentation
 
